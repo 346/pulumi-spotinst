@@ -4,7 +4,7 @@ include build/common.mk
 PACK             := spotinst
 PACKDIR          := sdk
 PROJECT          := github.com/346/pulumi-${PACK}
-NODE_MODULE_NAME := mishirock/${PACK}
+NODE_MODULE_NAME := @mishirock/pulumi-${PACK}
 
 TFGEN           := pulumi-tfgen-${PACK}
 PROVIDER        := pulumi-resource-${PACK}
@@ -27,7 +27,7 @@ build::
 		yarn run tsc && \
 		cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
 		sed -i.bak "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json && \
-		sed -i.bak "s/\@pulumi\/spotinst/mishirock\/spotinst/g" ./bin/package.json
+		sed -i.bak "s/\@pulumi\/spotinst/@mishirock\/pulumi-spotinst/g" ./bin/package.json
 	cd ${PACKDIR}/python/ && \
 		if [ $$(command -v pandoc) ]; then \
 			pandoc --from=markdown --to=rst --output=README.rst ../../README.md; \
