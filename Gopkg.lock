@@ -600,7 +600,7 @@
   version = "v1.0.3"
 
 [[projects]]
-  digest = "1:9199666275ade55d6aeeb6d5a104f531f7e12448b9e0fbdf3abae55ffa4965cc"
+  digest = "1:15582c80aeeb2a1bbe7f58f78c8b8165686f8cca6683d005a21908f89e55ed86"
   name = "github.com/spotinst/spotinst-sdk-go"
   packages = [
     "service/elastigroup",
@@ -623,7 +623,7 @@
     "spotinst/util/uritemplates",
   ]
   pruneopts = ""
-  revision = "1380e9a16d82f578db3fe0aa55091ba53b4f8d7e"
+  revision = "4b983233de022b4401937cbdbdac7bd403d27c8d"
 
 [[projects]]
   digest = "1:740b31391e4c3e4d2b5a20e1cbf2c2f7765275ead23945acc7669c36c0b8095a"

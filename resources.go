@@ -30,7 +30,13 @@ const (
 	// packages:
 	mainPkg = "spotinst"
 	// modules:
-	mainMod = "index" // the y module
+	awsMod          = "aws"
+	oceanMod        = "ocean/aws"
+	gcpMod          = "gcp"
+	gkeMod          = "gke"
+	azureMod        = "azure"
+	multaiMod       = "multai"
+	subscriptionMod = "index"
 )
 
 // makeMember manufactures a type token for the package and the given module and type.
@@ -98,26 +104,41 @@ func Provider() tfbridge.ProviderInfo {
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
 		Repository:  "https://github.com/346/pulumi-spotinst",
-		Config:      map[string]*tfbridge.SchemaInfo{
-			// Add any required configuration here, or remove the example below if
-			// no additional points are required.
-			// "region": {
-			// 	Type: makeType("region", "Region"),
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
-			// 	},
-			// },
+		Config: map[string]*tfbridge.SchemaInfo{
+			"account": {
+				Default: &tfbridge.DefaultInfo{
+					Value:   "",
+					EnvVars: []string{"SPOTINST_ACCOUNT"},
+				},
+			},
+			"token": {
+				Default: &tfbridge.DefaultInfo{
+					Value:   "",
+					EnvVars: []string{"SPOTINST_TOKEN"},
+				},
+			},
 		},
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type. An example
-			// is below.
-			// "aws_acm_certificate": {
-			// 	Tok: makeResource(mainMod, "Certificate"),
-			// 	Fields: map[string]*tfbridge.SchemaInfo{
-			// 		"tags": {Type: makeType(mainPkg, "Tags")},
-			// 	},
-			// },
+		Resources: map[string]*tfbridge.ResourceInfo{
+			"spotinst_elastigroup_aws":           {Tok: makeResource(awsMod, "Elastigroup")},
+			"spotinst_elastigroup_aws_beanstalk": {Tok: makeResource(awsMod, "Beanstalk")},
+			"spotinst_elastigroup_azure":         {Tok: makeResource(azureMod, "Elastigroup")},
+			"spotinst_elastigroup_gcp": {
+				Tok: makeResource(gcpMod, "Elastigroup"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"gpu": {Name: "gpu"},
+				},
+			},
+			"spotinst_elastigroup_gke":     {Tok: makeResource(gkeMod, "Elastigroup")},
+			"spotinst_mrscaler_aws":        {Tok: makeResource(awsMod, "MrScalar")},
+			"spotinst_multai_balancer":     {Tok: makeResource(multaiMod, "Balancer")},
+			"spotinst_multai_deployment":   {Tok: makeResource(multaiMod, "Deployment")},
+			"spotinst_multai_listener":     {Tok: makeResource(multaiMod, "Listener")},
+			"spotinst_multai_routing_rule": {Tok: makeResource(multaiMod, "RoutingRule")},
+			"spotinst_multai_target":       {Tok: makeResource(multaiMod, "Target")},
+			"spotinst_multai_target_set":   {Tok: makeResource(multaiMod, "TargetSet")},
+			"spotinst_ocean_aws":           {Tok: makeResource(awsMod, "Ocean")},
+			"spotinst_subscription":        {Tok: makeResource(subscriptionMod, "Subscription")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example

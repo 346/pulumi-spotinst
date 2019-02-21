@@ -8,11 +8,15 @@
 
 [[constraint]]
   name = "github.com/terraform-providers/terraform-provider-spotinst"
-  version = "v1.0.0"
+  version = "v1.7.0"
 
   [constraint.metadata]
-    govendor-exclude-prefixes = ["github.com/golang/protobuf"]
+    govendor-exclude-prefixes = ["github.com/golang/protobuf","github.com/spotinst/spotinst-sdk-go"]
     govendor-override = true
+
+[[override]]
+  name = "github.com/spotinst/spotinst-sdk-go"
+  revision = "4b983233de022b4401937cbdbdac7bd403d27c8d"
 
 # NOTE: the following overrides were injected by govendor-override. It may be necessary to
 # remove some of these overrides in order to produce a buildable vendor tree.
@@ -223,12 +227,6 @@
 [[override]]
   name = "github.com/satori/go.uuid"
   revision = "b061729afc07e77a8aa4fad0a2fd840958f1942a"
-  [override.metadata]
-    govendor-overridden=true
-
-[[override]]
-  name = "github.com/spotinst/spotinst-sdk-go"
-  revision = "1380e9a16d82f578db3fe0aa55091ba53b4f8d7e"
   [override.metadata]
     govendor-overridden=true
 
