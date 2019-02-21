@@ -7,6 +7,9 @@ Pulumi.*.yaml
 
 .idea/
 *.iml
-sdk/nodejs/node_modules
 
 yarn.lock
+
+sdk/nodejs/bin/
+sdk/nodejs/node_modules/
+sdk/python/bin/
