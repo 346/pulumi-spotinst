@@ -12,15 +12,15 @@ Modify this README to describe:
 
 ## Creating a Pulumi Terraform Bridge Provider
 
-First, clone this repo with the name of the desired provider in place of `xyz`:
+First, clone this repo with the name of the desired provider in place of `spotinst`:
 
 ```
-git clone https://github.com/pulumi/pulumi-tf-provider-boilerplate pulumi-xyz
+git clone https://github.com/pulumi/pulumi-tf-provider-boilerplate pulumi-spotinst
 ```
 
-Next, replace references to `xyz` with the name of your provider:
-- Search/replace the string `xyz` with the name of your provider throughout this repo
-- Rename the `cmd/pulumi-{resource,tfgen}-xyz` directories to match the provider name
+Next, replace references to `spotinst` with the name of your provider:
+- Search/replace the string `spotinst` with the name of your provider throughout this repo
+- Rename the `cmd/pulumi-{resource,tfgen}-spotinst` directories to match the provider name
 
 > Note: If the name of the desired Pulumi provider differs from the name of the Terraform provider, you will need to carefully distinguish between the references - see https://github.com/pulumi/pulumi-azure for an example.
 
@@ -62,7 +62,7 @@ To use from Python, install using `pip`:
 
 To use from Go, use `go get` to grab the latest version of the library
 
-    $ go get github.com/pulumi/pulumi-xyz/sdk/go/...
+    $ go get github.com/346/pulumi-spotinst/sdk/go/...
 
 ## Reference
 
