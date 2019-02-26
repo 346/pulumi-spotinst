@@ -1,4 +1,4 @@
-# spotinst Resource Provider
+# Spotinst Resource Provider
 
 ## Installing
 
@@ -6,11 +6,11 @@
 
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
-    $ npm install @pulumi/x
+    $ npm install @t346/pulumi-spotinst
 
 or `yarn`:
 
-    $ yarn add @pulumi/x
+    $ yarn add @t346/pulumi-spotinst
 
 ## Reference
 
