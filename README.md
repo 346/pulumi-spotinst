@@ -4,7 +4,7 @@
 
 ### Plugin
 
-$ pulumi plugin install resource spotinst v0.1.0 --cloud-url http://pulumi-spotinst.s3-website-ap-northeast-1.amazonaws.com/
+    $ pulumi plugin install resource spotinst v0.1.0 --cloud-url http://pulumi-spotinst.s3-website-ap-northeast-1.amazonaws.com/
 
 ### Node.js (Java/TypeScript)
 
