@@ -1,3 +1,6 @@
+# tested on macos only
+PULUMI_ROOT ?= $(realpath .)/.pulumi
+
 PROJECT_NAME := spotinst Package
 include build/common.mk
 

@@ -16,7 +16,7 @@
 # fork, and ensure `version` is not set.
 
 [[constraint]]
-  version = "v1.7.0"
+  version = "=v1.6.1"
   name = "github.com/terraform-providers/terraform-provider-spotinst"
   [constraint.metadata]
     govendor-override = true
@@ -25,7 +25,7 @@
       "github.com/spotinst/spotinst-sdk-go"
     ]
 [[override]]
-  revision = "4b983233de022b4401937cbdbdac7bd403d27c8d"
+  revision = "1274a49226c32e195b08b5d9787055c831a1b556"
   name = "github.com/spotinst/spotinst-sdk-go"
 
 

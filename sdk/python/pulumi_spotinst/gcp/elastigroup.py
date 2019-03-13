@@ -112,22 +112,17 @@ class Elastigroup(pulumi.CustomResource):
         :param pulumi.Input[list] backend_services: Describes the backend service configurations.
         :param pulumi.Input[str] description: The region your GCP group will be created in.
         :param pulumi.Input[int] desired_capacity: The desired number of instances the group should have at any time.
-        :param pulumi.Input[list] disks
         :param pulumi.Input[int] draining_timeout: Time (seconds) the instance is allowed to run after it is detached from the group. This is to allow the instance time to drain all the current TCP connections before terminating it.
-        :param pulumi.Input[bool] fallback_to_ondemand
         :param pulumi.Input[list] gpu: Defines the GPU configuration.
         :param pulumi.Input[int] health_check_grace_period: Period of time (seconds) to wait for VM to reach healthiness before monitoring for unhealthiness.
         :param pulumi.Input[list] instance_types_customs: Defines a set of custom instance types. Required if instance_types_preemptible and instance_types_on_demand are not set.
-        :param pulumi.Input[str] instance_types_ondemand
         :param pulumi.Input[list] instance_types_preemptibles: The preemptible VMs instance type. To maximize cost savings and market availability, select as many types as possible. Required if instance_types_on_demand is not set.
-        :param pulumi.Input[bool] ip_forwarding
         :param pulumi.Input[list] labels: Array of objects with key-value pairs.
         :param pulumi.Input[int] max_size: The maximum number of instances the group should have at any time.
         :param pulumi.Input[list] metadatas: Array of objects with key-value pairs.
         :param pulumi.Input[int] min_size: The minimum number of instances the group should have at any time.
         :param pulumi.Input[str] name: Name of this access configuration.
         :param pulumi.Input[list] network_interfaces: Array of objects representing the network configuration for the elastigroup.
-        :param pulumi.Input[int] ondemand_count
         :param pulumi.Input[int] preemptible_percentage: Percentage of Preemptible VMs to spin up from the "desired_capacity".
         :param pulumi.Input[list] scaling_down_policies: Contains scaling policies for scaling the Elastigroup down.
         :param pulumi.Input[list] scaling_up_policies: Contains scaling policies for scaling the Elastigroup up.

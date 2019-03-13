@@ -5,5 +5,4 @@
 # Export this package's modules as members:
 from .elastigroup import *
 from .beanstalk import *
-from .mr_scalar import *
 from .ocean import *

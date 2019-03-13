@@ -16,6 +16,9 @@ type Beanstalk struct {
 // NewBeanstalk registers a new resource with the given unique name, arguments, and options.
 func NewBeanstalk(ctx *pulumi.Context,
 	name string, args *BeanstalkArgs, opts ...pulumi.ResourceOpt) (*Beanstalk, error) {
+	if args == nil || args.BeanstalkEnvironmentName == nil {
+		return nil, errors.New("missing required argument 'BeanstalkEnvironmentName'")
+	}
 	if args == nil || args.DesiredCapacity == nil {
 		return nil, errors.New("missing required argument 'DesiredCapacity'")
 	}
@@ -39,26 +42,20 @@ func NewBeanstalk(ctx *pulumi.Context,
 	}
 	inputs := make(map[string]interface{})
 	if args == nil {
-		inputs["beanstalkEnvironmentId"] = nil
 		inputs["beanstalkEnvironmentName"] = nil
-		inputs["deploymentPreferences"] = nil
 		inputs["desiredCapacity"] = nil
 		inputs["instanceTypesSpots"] = nil
 		inputs["maintenance"] = nil
-		inputs["managedActions"] = nil
 		inputs["maxSize"] = nil
 		inputs["minSize"] = nil
 		inputs["name"] = nil
 		inputs["product"] = nil
 		inputs["region"] = nil
 	} else {
-		inputs["beanstalkEnvironmentId"] = args.BeanstalkEnvironmentId
 		inputs["beanstalkEnvironmentName"] = args.BeanstalkEnvironmentName
-		inputs["deploymentPreferences"] = args.DeploymentPreferences
 		inputs["desiredCapacity"] = args.DesiredCapacity
 		inputs["instanceTypesSpots"] = args.InstanceTypesSpots
 		inputs["maintenance"] = args.Maintenance
-		inputs["managedActions"] = args.ManagedActions
 		inputs["maxSize"] = args.MaxSize
 		inputs["minSize"] = args.MinSize
 		inputs["name"] = args.Name
@@ -78,13 +75,10 @@ func GetBeanstalk(ctx *pulumi.Context,
 	name string, id pulumi.ID, state *BeanstalkState, opts ...pulumi.ResourceOpt) (*Beanstalk, error) {
 	inputs := make(map[string]interface{})
 	if state != nil {
-		inputs["beanstalkEnvironmentId"] = state.BeanstalkEnvironmentId
 		inputs["beanstalkEnvironmentName"] = state.BeanstalkEnvironmentName
-		inputs["deploymentPreferences"] = state.DeploymentPreferences
 		inputs["desiredCapacity"] = state.DesiredCapacity
 		inputs["instanceTypesSpots"] = state.InstanceTypesSpots
 		inputs["maintenance"] = state.Maintenance
-		inputs["managedActions"] = state.ManagedActions
 		inputs["maxSize"] = state.MaxSize
 		inputs["minSize"] = state.MinSize
 		inputs["name"] = state.Name
@@ -108,19 +102,9 @@ func (r *Beanstalk) ID() *pulumi.IDOutput {
 	return r.s.ID()
 }
 
-// The id of an existing Beanstalk environment. 
-func (r *Beanstalk) BeanstalkEnvironmentId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["beanstalkEnvironmentId"])
-}
-
 // The name of an existing Beanstalk environment.
 func (r *Beanstalk) BeanstalkEnvironmentName() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["beanstalkEnvironmentName"])
-}
-
-// Preferences when performing a roll
-func (r *Beanstalk) DeploymentPreferences() *pulumi.Output {
-	return r.s.State["deploymentPreferences"]
 }
 
 // The desired number of instances the group should have at any time.
@@ -135,11 +119,6 @@ func (r *Beanstalk) InstanceTypesSpots() *pulumi.ArrayOutput {
 
 func (r *Beanstalk) Maintenance() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["maintenance"])
-}
-
-// Managed Actions parameters
-func (r *Beanstalk) ManagedActions() *pulumi.Output {
-	return r.s.State["managedActions"]
 }
 
 // The maximum number of instances the group should have at any time.
@@ -170,19 +149,13 @@ func (r *Beanstalk) Region() *pulumi.StringOutput {
 
 // Input properties used for looking up and filtering Beanstalk resources.
 type BeanstalkState struct {
-	// The id of an existing Beanstalk environment. 
-	BeanstalkEnvironmentId interface{}
 	// The name of an existing Beanstalk environment.
 	BeanstalkEnvironmentName interface{}
-	// Preferences when performing a roll
-	DeploymentPreferences interface{}
 	// The desired number of instances the group should have at any time.
 	DesiredCapacity interface{}
 	// One or more instance types. To maximize the availability of Spot instances, select as many instance types as possible.
 	InstanceTypesSpots interface{}
 	Maintenance interface{}
-	// Managed Actions parameters
-	ManagedActions interface{}
 	// The maximum number of instances the group should have at any time.
 	MaxSize interface{}
 	// The minimum number of instances the group should have at any time.
@@ -198,19 +171,13 @@ type BeanstalkState struct {
 
 // The set of arguments for constructing a Beanstalk resource.
 type BeanstalkArgs struct {
-	// The id of an existing Beanstalk environment. 
-	BeanstalkEnvironmentId interface{}
 	// The name of an existing Beanstalk environment.
 	BeanstalkEnvironmentName interface{}
-	// Preferences when performing a roll
-	DeploymentPreferences interface{}
 	// The desired number of instances the group should have at any time.
 	DesiredCapacity interface{}
 	// One or more instance types. To maximize the availability of Spot instances, select as many instance types as possible.
 	InstanceTypesSpots interface{}
 	Maintenance interface{}
-	// Managed Actions parameters
-	ManagedActions interface{}
 	// The maximum number of instances the group should have at any time.
 	MaxSize interface{}
 	// The minimum number of instances the group should have at any time.

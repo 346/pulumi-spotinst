@@ -4,5 +4,4 @@
 // Export members:
 export * from "./beanstalk";
 export * from "./elastigroup";
-export * from "./mrScalar";
 export * from "./ocean";

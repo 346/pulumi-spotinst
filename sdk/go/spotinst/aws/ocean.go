@@ -24,7 +24,6 @@ func NewOcean(ctx *pulumi.Context,
 	}
 	inputs := make(map[string]interface{})
 	if args == nil {
-		inputs["associatePublicIpAddress"] = nil
 		inputs["autoscaler"] = nil
 		inputs["blacklists"] = nil
 		inputs["controllerId"] = nil
@@ -33,7 +32,6 @@ func NewOcean(ctx *pulumi.Context,
 		inputs["iamInstanceProfile"] = nil
 		inputs["imageId"] = nil
 		inputs["keyName"] = nil
-		inputs["loadBalancers"] = nil
 		inputs["maxSize"] = nil
 		inputs["minSize"] = nil
 		inputs["name"] = nil
@@ -46,7 +44,6 @@ func NewOcean(ctx *pulumi.Context,
 		inputs["utilizeReservedInstances"] = nil
 		inputs["whitelists"] = nil
 	} else {
-		inputs["associatePublicIpAddress"] = args.AssociatePublicIpAddress
 		inputs["autoscaler"] = args.Autoscaler
 		inputs["blacklists"] = args.Blacklists
 		inputs["controllerId"] = args.ControllerId
@@ -55,7 +52,6 @@ func NewOcean(ctx *pulumi.Context,
 		inputs["iamInstanceProfile"] = args.IamInstanceProfile
 		inputs["imageId"] = args.ImageId
 		inputs["keyName"] = args.KeyName
-		inputs["loadBalancers"] = args.LoadBalancers
 		inputs["maxSize"] = args.MaxSize
 		inputs["minSize"] = args.MinSize
 		inputs["name"] = args.Name
@@ -81,7 +77,6 @@ func GetOcean(ctx *pulumi.Context,
 	name string, id pulumi.ID, state *OceanState, opts ...pulumi.ResourceOpt) (*Ocean, error) {
 	inputs := make(map[string]interface{})
 	if state != nil {
-		inputs["associatePublicIpAddress"] = state.AssociatePublicIpAddress
 		inputs["autoscaler"] = state.Autoscaler
 		inputs["blacklists"] = state.Blacklists
 		inputs["controllerId"] = state.ControllerId
@@ -90,7 +85,6 @@ func GetOcean(ctx *pulumi.Context,
 		inputs["iamInstanceProfile"] = state.IamInstanceProfile
 		inputs["imageId"] = state.ImageId
 		inputs["keyName"] = state.KeyName
-		inputs["loadBalancers"] = state.LoadBalancers
 		inputs["maxSize"] = state.MaxSize
 		inputs["minSize"] = state.MinSize
 		inputs["name"] = state.Name
@@ -118,10 +112,6 @@ func (r *Ocean) URN() *pulumi.URNOutput {
 // ID is this resource's unique identifier assigned by its provider.
 func (r *Ocean) ID() *pulumi.IDOutput {
 	return r.s.ID()
-}
-
-func (r *Ocean) AssociatePublicIpAddress() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["associatePublicIpAddress"])
 }
 
 // Describes the Ocean Kubernetes autoscaler.
@@ -164,11 +154,6 @@ func (r *Ocean) KeyName() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["keyName"])
 }
 
-// - Array of load balancer objects to add to ocean cluster
-func (r *Ocean) LoadBalancers() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["loadBalancers"])
-}
-
 // The upper limit of instances the cluster can scale up to.
 func (r *Ocean) MaxSize() *pulumi.IntOutput {
 	return (*pulumi.IntOutput)(r.s.State["maxSize"])
@@ -179,7 +164,7 @@ func (r *Ocean) MinSize() *pulumi.IntOutput {
 	return (*pulumi.IntOutput)(r.s.State["minSize"])
 }
 
-// Required if type is set to CLASSIC
+// The cluster name.
 func (r *Ocean) Name() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["name"])
 }
@@ -226,7 +211,6 @@ func (r *Ocean) Whitelists() *pulumi.ArrayOutput {
 
 // Input properties used for looking up and filtering Ocean resources.
 type OceanState struct {
-	AssociatePublicIpAddress interface{}
 	// Describes the Ocean Kubernetes autoscaler.
 	Autoscaler interface{}
 	// Instance types not allowed in the Ocean cluster. Cannot be configured if `whitelist` is configured.
@@ -243,13 +227,11 @@ type OceanState struct {
 	ImageId interface{}
 	// The key pair to attach the instances.
 	KeyName interface{}
-	// - Array of load balancer objects to add to ocean cluster
-	LoadBalancers interface{}
 	// The upper limit of instances the cluster can scale up to.
 	MaxSize interface{}
 	// The lower limit of instances the cluster can scale down to.
 	MinSize interface{}
-	// Required if type is set to CLASSIC
+	// The cluster name.
 	Name interface{}
 	// The region the cluster will run in.
 	Region interface{}
@@ -271,7 +253,6 @@ type OceanState struct {
 
 // The set of arguments for constructing a Ocean resource.
 type OceanArgs struct {
-	AssociatePublicIpAddress interface{}
 	// Describes the Ocean Kubernetes autoscaler.
 	Autoscaler interface{}
 	// Instance types not allowed in the Ocean cluster. Cannot be configured if `whitelist` is configured.
@@ -288,13 +269,11 @@ type OceanArgs struct {
 	ImageId interface{}
 	// The key pair to attach the instances.
 	KeyName interface{}
-	// - Array of load balancer objects to add to ocean cluster
-	LoadBalancers interface{}
 	// The upper limit of instances the cluster can scale up to.
 	MaxSize interface{}
 	// The lower limit of instances the cluster can scale down to.
 	MinSize interface{}
-	// Required if type is set to CLASSIC
+	// The cluster name.
 	Name interface{}
 	// The region the cluster will run in.
 	Region interface{}

@@ -9,7 +9,6 @@ import pulumi.runtime
 from .. import utilities, tables
 
 class Ocean(pulumi.CustomResource):
-    associate_public_ip_address: pulumi.Output[bool]
     autoscaler: pulumi.Output[dict]
     """
     Describes the Ocean Kubernetes autoscaler.
@@ -42,10 +41,6 @@ class Ocean(pulumi.CustomResource):
     """
     The key pair to attach the instances.
     """
-    load_balancers: pulumi.Output[list]
-    """
-    - Array of load balancer objects to add to ocean cluster
-    """
     max_size: pulumi.Output[int]
     """
     The upper limit of instances the cluster can scale up to.
@@ -56,7 +51,7 @@ class Ocean(pulumi.CustomResource):
     """
     name: pulumi.Output[str]
     """
-    Required if type is set to CLASSIC
+    The cluster name.
     """
     region: pulumi.Output[str]
     """
@@ -90,13 +85,12 @@ class Ocean(pulumi.CustomResource):
     """
     Instance types allowed in the Ocean cluster. Cannot be configured if `blacklist` is configured.
     """
-    def __init__(__self__, resource_name, opts=None, associate_public_ip_address=None, autoscaler=None, blacklists=None, controller_id=None, desired_capacity=None, fallback_to_ondemand=None, iam_instance_profile=None, image_id=None, key_name=None, load_balancers=None, max_size=None, min_size=None, name=None, region=None, security_groups=None, spot_percentage=None, subnet_ids=None, tags=None, user_data=None, utilize_reserved_instances=None, whitelists=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, autoscaler=None, blacklists=None, controller_id=None, desired_capacity=None, fallback_to_ondemand=None, iam_instance_profile=None, image_id=None, key_name=None, max_size=None, min_size=None, name=None, region=None, security_groups=None, spot_percentage=None, subnet_ids=None, tags=None, user_data=None, utilize_reserved_instances=None, whitelists=None, __name__=None, __opts__=None):
         """
         Provides a Spotinst Ocean AWS resource.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] associate_public_ip_address
         :param pulumi.Input[dict] autoscaler: Describes the Ocean Kubernetes autoscaler.
         :param pulumi.Input[list] blacklists: Instance types not allowed in the Ocean cluster. Cannot be configured if `whitelist` is configured.
         :param pulumi.Input[str] controller_id: The ocean cluster identifier. Example: `ocean.k8s`
@@ -105,10 +99,9 @@ class Ocean(pulumi.CustomResource):
         :param pulumi.Input[str] iam_instance_profile: The instance profile iam role.
         :param pulumi.Input[str] image_id: ID of the image used to launch the instances.
         :param pulumi.Input[str] key_name: The key pair to attach the instances.
-        :param pulumi.Input[list] load_balancers: - Array of load balancer objects to add to ocean cluster
         :param pulumi.Input[int] max_size: The upper limit of instances the cluster can scale up to.
         :param pulumi.Input[int] min_size: The lower limit of instances the cluster can scale down to.
-        :param pulumi.Input[str] name: Required if type is set to CLASSIC
+        :param pulumi.Input[str] name: The cluster name.
         :param pulumi.Input[str] region: The region the cluster will run in.
         :param pulumi.Input[list] security_groups: One or more security group ids.
         :param pulumi.Input[float] spot_percentage: The percentage of Spot instances the cluster should maintain. Min 0, max 100.
@@ -133,8 +126,6 @@ class Ocean(pulumi.CustomResource):
 
         __props__ = dict()
 
-        __props__['associate_public_ip_address'] = associate_public_ip_address
-
         __props__['autoscaler'] = autoscaler
 
         __props__['blacklists'] = blacklists
@@ -150,8 +141,6 @@ class Ocean(pulumi.CustomResource):
         __props__['image_id'] = image_id
 
         __props__['key_name'] = key_name
-
-        __props__['load_balancers'] = load_balancers
 
         __props__['max_size'] = max_size
 

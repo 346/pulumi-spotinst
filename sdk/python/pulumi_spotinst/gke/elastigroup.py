@@ -55,7 +55,6 @@ class Elastigroup(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: The name of the GKE cluster you wish to import.
         :param pulumi.Input[str] cluster_zone_name: The zone where the cluster is hosted.
         :param pulumi.Input[int] desired_capacity: The desired number of instances the group should have at any time.
-        :param pulumi.Input[str] instance_types_ondemand
         :param pulumi.Input[list] instance_types_preemptibles: The preemptible VMs instance type. To maximize cost savings and market availability, select as many types as possible. Required if instance_types_on_demand is not set.
         :param pulumi.Input[int] max_size: The maximum number of instances the group should have at any time.
         :param pulumi.Input[int] min_size: The minimum number of instances the group should have at any time.

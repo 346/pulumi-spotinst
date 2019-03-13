@@ -9,17 +9,9 @@ import pulumi.runtime
 from .. import utilities, tables
 
 class Beanstalk(pulumi.CustomResource):
-    beanstalk_environment_id: pulumi.Output[str]
-    """
-    The id of an existing Beanstalk environment. 
-    """
     beanstalk_environment_name: pulumi.Output[str]
     """
     The name of an existing Beanstalk environment.
-    """
-    deployment_preferences: pulumi.Output[dict]
-    """
-    Preferences when performing a roll
     """
     desired_capacity: pulumi.Output[int]
     """
@@ -30,10 +22,6 @@ class Beanstalk(pulumi.CustomResource):
     One or more instance types. To maximize the availability of Spot instances, select as many instance types as possible.
     """
     maintenance: pulumi.Output[str]
-    managed_actions: pulumi.Output[dict]
-    """
-    Managed Actions parameters
-    """
     max_size: pulumi.Output[int]
     """
     The maximum number of instances the group should have at any time.
@@ -55,19 +43,15 @@ class Beanstalk(pulumi.CustomResource):
     """
     The AWS region your group will be created in. Cannot be changed after the group has been created.
     """
-    def __init__(__self__, resource_name, opts=None, beanstalk_environment_id=None, beanstalk_environment_name=None, deployment_preferences=None, desired_capacity=None, instance_types_spots=None, maintenance=None, managed_actions=None, max_size=None, min_size=None, name=None, product=None, region=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, beanstalk_environment_name=None, desired_capacity=None, instance_types_spots=None, maintenance=None, max_size=None, min_size=None, name=None, product=None, region=None, __name__=None, __opts__=None):
         """
         Provides a Spotinst AWS group resource using Elastic Beanstalk.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] beanstalk_environment_id: The id of an existing Beanstalk environment. 
         :param pulumi.Input[str] beanstalk_environment_name: The name of an existing Beanstalk environment.
-        :param pulumi.Input[dict] deployment_preferences: Preferences when performing a roll
         :param pulumi.Input[int] desired_capacity: The desired number of instances the group should have at any time.
         :param pulumi.Input[list] instance_types_spots: One or more instance types. To maximize the availability of Spot instances, select as many instance types as possible.
-        :param pulumi.Input[str] maintenance
-        :param pulumi.Input[dict] managed_actions: Managed Actions parameters
         :param pulumi.Input[int] max_size: The maximum number of instances the group should have at any time.
         :param pulumi.Input[int] min_size: The minimum number of instances the group should have at any time.
         :param pulumi.Input[str] name: The group name.
@@ -90,11 +74,9 @@ class Beanstalk(pulumi.CustomResource):
 
         __props__ = dict()
 
-        __props__['beanstalk_environment_id'] = beanstalk_environment_id
-
+        if beanstalk_environment_name is None:
+            raise TypeError('Missing required property beanstalk_environment_name')
         __props__['beanstalk_environment_name'] = beanstalk_environment_name
-
-        __props__['deployment_preferences'] = deployment_preferences
 
         if desired_capacity is None:
             raise TypeError('Missing required property desired_capacity')
@@ -105,8 +87,6 @@ class Beanstalk(pulumi.CustomResource):
         __props__['instance_types_spots'] = instance_types_spots
 
         __props__['maintenance'] = maintenance
-
-        __props__['managed_actions'] = managed_actions
 
         if max_size is None:
             raise TypeError('Missing required property max_size')

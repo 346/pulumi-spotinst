@@ -17,13 +17,10 @@ export class Beanstalk extends pulumi.CustomResource {
         return new Beanstalk(name, <any>state, { ...opts, id: id });
     }
 
-    public readonly beanstalkEnvironmentId: pulumi.Output<string | undefined>;
-    public readonly beanstalkEnvironmentName: pulumi.Output<string | undefined>;
-    public readonly deploymentPreferences: pulumi.Output<{ automaticRoll?: boolean, batchSizePercentage?: number, gracePeriod?: number, strategies?: { action?: string, shouldDrainInstances?: boolean }[] } | undefined>;
+    public readonly beanstalkEnvironmentName: pulumi.Output<string>;
     public readonly desiredCapacity: pulumi.Output<number>;
     public readonly instanceTypesSpots: pulumi.Output<string[]>;
     public readonly maintenance: pulumi.Output<string | undefined>;
-    public readonly managedActions: pulumi.Output<{ platformUpdate?: { performAt?: string, timeWindow?: string, updateLevel?: string } } | undefined>;
     public readonly maxSize: pulumi.Output<number>;
     public readonly minSize: pulumi.Output<number>;
     public readonly name: pulumi.Output<string>;
@@ -42,13 +39,10 @@ export class Beanstalk extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state: BeanstalkState = argsOrState as BeanstalkState | undefined;
-            inputs["beanstalkEnvironmentId"] = state ? state.beanstalkEnvironmentId : undefined;
             inputs["beanstalkEnvironmentName"] = state ? state.beanstalkEnvironmentName : undefined;
-            inputs["deploymentPreferences"] = state ? state.deploymentPreferences : undefined;
             inputs["desiredCapacity"] = state ? state.desiredCapacity : undefined;
             inputs["instanceTypesSpots"] = state ? state.instanceTypesSpots : undefined;
             inputs["maintenance"] = state ? state.maintenance : undefined;
-            inputs["managedActions"] = state ? state.managedActions : undefined;
             inputs["maxSize"] = state ? state.maxSize : undefined;
             inputs["minSize"] = state ? state.minSize : undefined;
             inputs["name"] = state ? state.name : undefined;
@@ -56,6 +50,9 @@ export class Beanstalk extends pulumi.CustomResource {
             inputs["region"] = state ? state.region : undefined;
         } else {
             const args = argsOrState as BeanstalkArgs | undefined;
+            if (!args || args.beanstalkEnvironmentName === undefined) {
+                throw new Error("Missing required property 'beanstalkEnvironmentName'");
+            }
             if (!args || args.desiredCapacity === undefined) {
                 throw new Error("Missing required property 'desiredCapacity'");
             }
@@ -77,13 +74,10 @@ export class Beanstalk extends pulumi.CustomResource {
             if (!args || args.region === undefined) {
                 throw new Error("Missing required property 'region'");
             }
-            inputs["beanstalkEnvironmentId"] = args ? args.beanstalkEnvironmentId : undefined;
             inputs["beanstalkEnvironmentName"] = args ? args.beanstalkEnvironmentName : undefined;
-            inputs["deploymentPreferences"] = args ? args.deploymentPreferences : undefined;
             inputs["desiredCapacity"] = args ? args.desiredCapacity : undefined;
             inputs["instanceTypesSpots"] = args ? args.instanceTypesSpots : undefined;
             inputs["maintenance"] = args ? args.maintenance : undefined;
-            inputs["managedActions"] = args ? args.managedActions : undefined;
             inputs["maxSize"] = args ? args.maxSize : undefined;
             inputs["minSize"] = args ? args.minSize : undefined;
             inputs["name"] = args ? args.name : undefined;
@@ -98,13 +92,10 @@ export class Beanstalk extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Beanstalk resources.
  */
 export interface BeanstalkState {
-    readonly beanstalkEnvironmentId?: pulumi.Input<string>;
     readonly beanstalkEnvironmentName?: pulumi.Input<string>;
-    readonly deploymentPreferences?: pulumi.Input<{ automaticRoll?: pulumi.Input<boolean>, batchSizePercentage?: pulumi.Input<number>, gracePeriod?: pulumi.Input<number>, strategies?: pulumi.Input<pulumi.Input<{ action?: pulumi.Input<string>, shouldDrainInstances?: pulumi.Input<boolean> }>[]> }>;
     readonly desiredCapacity?: pulumi.Input<number>;
     readonly instanceTypesSpots?: pulumi.Input<pulumi.Input<string>[]>;
     readonly maintenance?: pulumi.Input<string>;
-    readonly managedActions?: pulumi.Input<{ platformUpdate?: pulumi.Input<{ performAt?: pulumi.Input<string>, timeWindow?: pulumi.Input<string>, updateLevel?: pulumi.Input<string> }> }>;
     readonly maxSize?: pulumi.Input<number>;
     readonly minSize?: pulumi.Input<number>;
     readonly name?: pulumi.Input<string>;
@@ -116,13 +107,10 @@ export interface BeanstalkState {
  * The set of arguments for constructing a Beanstalk resource.
  */
 export interface BeanstalkArgs {
-    readonly beanstalkEnvironmentId?: pulumi.Input<string>;
-    readonly beanstalkEnvironmentName?: pulumi.Input<string>;
-    readonly deploymentPreferences?: pulumi.Input<{ automaticRoll?: pulumi.Input<boolean>, batchSizePercentage?: pulumi.Input<number>, gracePeriod?: pulumi.Input<number>, strategies?: pulumi.Input<pulumi.Input<{ action?: pulumi.Input<string>, shouldDrainInstances?: pulumi.Input<boolean> }>[]> }>;
+    readonly beanstalkEnvironmentName: pulumi.Input<string>;
     readonly desiredCapacity: pulumi.Input<number>;
     readonly instanceTypesSpots: pulumi.Input<pulumi.Input<string>[]>;
     readonly maintenance?: pulumi.Input<string>;
-    readonly managedActions?: pulumi.Input<{ platformUpdate?: pulumi.Input<{ performAt?: pulumi.Input<string>, timeWindow?: pulumi.Input<string>, updateLevel?: pulumi.Input<string> }> }>;
     readonly maxSize: pulumi.Input<number>;
     readonly minSize: pulumi.Input<number>;
     readonly name: pulumi.Input<string>;

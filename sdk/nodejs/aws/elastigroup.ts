@@ -40,7 +40,6 @@ export class Elastigroup extends pulumi.CustomResource {
     public readonly instanceTypesPreferredSpots: pulumi.Output<string[] | undefined>;
     public readonly instanceTypesSpots: pulumi.Output<string[]>;
     public readonly instanceTypesWeights: pulumi.Output<{ instanceType: string, weight: number }[] | undefined>;
-    public readonly integrationBeanstalk: pulumi.Output<{ deploymentPreferences?: { automaticRoll?: boolean, batchSizePercentage?: number, gracePeriod?: number, strategy?: { action?: string, shouldDrainInstances?: boolean } }, environmentId?: string, managedActions?: { platformUpdate?: { performAt?: string, timeWindow?: string, updateLevel?: string } } } | undefined>;
     public readonly integrationCodedeploy: pulumi.Output<{ cleanupOnFailure: boolean, deploymentGroups: { applicationName: string, deploymentGroupName: string }[], terminateInstanceOnFailure: boolean } | undefined>;
     public readonly integrationDockerSwarm: pulumi.Output<{ autoscaleCooldown?: number, autoscaleDown?: { evaluationPeriods?: number }, autoscaleHeadroom?: { cpuPerUnit?: number, memoryPerUnit?: number, numOfUnits?: number }, autoscaleIsEnabled?: boolean, masterHost: string, masterPort: number } | undefined>;
     public readonly integrationEcs: pulumi.Output<{ autoscaleAttributes?: { key: string, value: string }[], autoscaleCooldown?: number, autoscaleDown?: { evaluationPeriods?: number }, autoscaleHeadroom?: { cpuPerUnit?: number, memoryPerUnit?: number, numOfUnits?: number }, autoscaleIsAutoConfig?: boolean, autoscaleIsEnabled?: boolean, autoscaleScaleDownNonServiceTasks?: boolean, clusterName: string } | undefined>;
@@ -57,7 +56,7 @@ export class Elastigroup extends pulumi.CustomResource {
     public readonly minSize: pulumi.Output<number>;
     public readonly multaiTargetSets: pulumi.Output<{ balancerId: string, targetSetId: string }[] | undefined>;
     public readonly name: pulumi.Output<string>;
-    public readonly networkInterfaces: pulumi.Output<{ associateIpv6Address?: boolean, associatePublicIpAddress?: boolean, deleteOnTermination: boolean, description?: string, deviceIndex: string, networkInterfaceId?: string, privateIpAddress?: string, secondaryPrivateIpAddressCount?: string }[] | undefined>;
+    public readonly networkInterfaces: pulumi.Output<{ associateIpv6Address?: boolean, associatePublicIpAddress?: boolean, deleteOnTermination: boolean, description: string, deviceIndex: string, networkInterfaceId?: string, privateIpAddress?: string, secondaryPrivateIpAddressCount?: string }[] | undefined>;
     public readonly ondemandCount: pulumi.Output<number | undefined>;
     public readonly orientation: pulumi.Output<string>;
     public readonly persistBlockDevices: pulumi.Output<boolean | undefined>;
@@ -81,7 +80,7 @@ export class Elastigroup extends pulumi.CustomResource {
     public readonly subnetIds: pulumi.Output<string[] | undefined>;
     public readonly tags: pulumi.Output<{ key: string, value: string }[] | undefined>;
     public readonly targetGroupArns: pulumi.Output<string[] | undefined>;
-    public readonly updatePolicy: pulumi.Output<{ autoApplyTags?: boolean, rollConfig?: { batchSizePercentage: number, gracePeriod?: number, healthCheckType?: string, waitForRollPercentage?: number, waitForRollTimeout?: number }, shouldResumeStateful: boolean, shouldRoll: boolean, waitForRollPercentage?: number, waitForRollTimeout?: number } | undefined>;
+    public readonly updatePolicy: pulumi.Output<{ autoApplyTags?: boolean, rollConfig?: { batchSizePercentage: number, gracePeriod?: number, healthCheckType?: string, waitForRollPercentage?: number, waitForRollTimeout?: number }, shouldResumeStateful: boolean, shouldRoll: boolean } | undefined>;
     public readonly userData: pulumi.Output<string | undefined>;
     public readonly utilizeReservedInstances: pulumi.Output<boolean | undefined>;
     public readonly waitForCapacity: pulumi.Output<number | undefined>;
@@ -122,7 +121,6 @@ export class Elastigroup extends pulumi.CustomResource {
             inputs["instanceTypesPreferredSpots"] = state ? state.instanceTypesPreferredSpots : undefined;
             inputs["instanceTypesSpots"] = state ? state.instanceTypesSpots : undefined;
             inputs["instanceTypesWeights"] = state ? state.instanceTypesWeights : undefined;
-            inputs["integrationBeanstalk"] = state ? state.integrationBeanstalk : undefined;
             inputs["integrationCodedeploy"] = state ? state.integrationCodedeploy : undefined;
             inputs["integrationDockerSwarm"] = state ? state.integrationDockerSwarm : undefined;
             inputs["integrationEcs"] = state ? state.integrationEcs : undefined;
@@ -214,7 +212,6 @@ export class Elastigroup extends pulumi.CustomResource {
             inputs["instanceTypesPreferredSpots"] = args ? args.instanceTypesPreferredSpots : undefined;
             inputs["instanceTypesSpots"] = args ? args.instanceTypesSpots : undefined;
             inputs["instanceTypesWeights"] = args ? args.instanceTypesWeights : undefined;
-            inputs["integrationBeanstalk"] = args ? args.integrationBeanstalk : undefined;
             inputs["integrationCodedeploy"] = args ? args.integrationCodedeploy : undefined;
             inputs["integrationDockerSwarm"] = args ? args.integrationDockerSwarm : undefined;
             inputs["integrationEcs"] = args ? args.integrationEcs : undefined;
@@ -292,7 +289,6 @@ export interface ElastigroupState {
     readonly instanceTypesPreferredSpots?: pulumi.Input<pulumi.Input<string>[]>;
     readonly instanceTypesSpots?: pulumi.Input<pulumi.Input<string>[]>;
     readonly instanceTypesWeights?: pulumi.Input<pulumi.Input<{ instanceType: pulumi.Input<string>, weight: pulumi.Input<number> }>[]>;
-    readonly integrationBeanstalk?: pulumi.Input<{ deploymentPreferences?: pulumi.Input<{ automaticRoll?: pulumi.Input<boolean>, batchSizePercentage?: pulumi.Input<number>, gracePeriod?: pulumi.Input<number>, strategy?: pulumi.Input<{ action?: pulumi.Input<string>, shouldDrainInstances?: pulumi.Input<boolean> }> }>, environmentId?: pulumi.Input<string>, managedActions?: pulumi.Input<{ platformUpdate?: pulumi.Input<{ performAt?: pulumi.Input<string>, timeWindow?: pulumi.Input<string>, updateLevel?: pulumi.Input<string> }> }> }>;
     readonly integrationCodedeploy?: pulumi.Input<{ cleanupOnFailure: pulumi.Input<boolean>, deploymentGroups: pulumi.Input<pulumi.Input<{ applicationName: pulumi.Input<string>, deploymentGroupName: pulumi.Input<string> }>[]>, terminateInstanceOnFailure: pulumi.Input<boolean> }>;
     readonly integrationDockerSwarm?: pulumi.Input<{ autoscaleCooldown?: pulumi.Input<number>, autoscaleDown?: pulumi.Input<{ evaluationPeriods?: pulumi.Input<number> }>, autoscaleHeadroom?: pulumi.Input<{ cpuPerUnit?: pulumi.Input<number>, memoryPerUnit?: pulumi.Input<number>, numOfUnits?: pulumi.Input<number> }>, autoscaleIsEnabled?: pulumi.Input<boolean>, masterHost: pulumi.Input<string>, masterPort: pulumi.Input<number> }>;
     readonly integrationEcs?: pulumi.Input<{ autoscaleAttributes?: pulumi.Input<pulumi.Input<{ key: pulumi.Input<string>, value: pulumi.Input<string> }>[]>, autoscaleCooldown?: pulumi.Input<number>, autoscaleDown?: pulumi.Input<{ evaluationPeriods?: pulumi.Input<number> }>, autoscaleHeadroom?: pulumi.Input<{ cpuPerUnit?: pulumi.Input<number>, memoryPerUnit?: pulumi.Input<number>, numOfUnits?: pulumi.Input<number> }>, autoscaleIsAutoConfig?: pulumi.Input<boolean>, autoscaleIsEnabled?: pulumi.Input<boolean>, autoscaleScaleDownNonServiceTasks?: pulumi.Input<boolean>, clusterName: pulumi.Input<string> }>;
@@ -309,7 +305,7 @@ export interface ElastigroupState {
     readonly minSize?: pulumi.Input<number>;
     readonly multaiTargetSets?: pulumi.Input<pulumi.Input<{ balancerId: pulumi.Input<string>, targetSetId: pulumi.Input<string> }>[]>;
     readonly name?: pulumi.Input<string>;
-    readonly networkInterfaces?: pulumi.Input<pulumi.Input<{ associateIpv6Address?: pulumi.Input<boolean>, associatePublicIpAddress?: pulumi.Input<boolean>, deleteOnTermination?: pulumi.Input<boolean>, description?: pulumi.Input<string>, deviceIndex: pulumi.Input<string>, networkInterfaceId?: pulumi.Input<string>, privateIpAddress?: pulumi.Input<string>, secondaryPrivateIpAddressCount?: pulumi.Input<string> }>[]>;
+    readonly networkInterfaces?: pulumi.Input<pulumi.Input<{ associateIpv6Address?: pulumi.Input<boolean>, associatePublicIpAddress?: pulumi.Input<boolean>, deleteOnTermination?: pulumi.Input<boolean>, description: pulumi.Input<string>, deviceIndex: pulumi.Input<string>, networkInterfaceId?: pulumi.Input<string>, privateIpAddress?: pulumi.Input<string>, secondaryPrivateIpAddressCount?: pulumi.Input<string> }>[]>;
     readonly ondemandCount?: pulumi.Input<number>;
     readonly orientation?: pulumi.Input<string>;
     readonly persistBlockDevices?: pulumi.Input<boolean>;
@@ -333,7 +329,7 @@ export interface ElastigroupState {
     readonly subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
     readonly tags?: pulumi.Input<pulumi.Input<{ key: pulumi.Input<string>, value: pulumi.Input<string> }>[]>;
     readonly targetGroupArns?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly updatePolicy?: pulumi.Input<{ autoApplyTags?: pulumi.Input<boolean>, rollConfig?: pulumi.Input<{ batchSizePercentage: pulumi.Input<number>, gracePeriod?: pulumi.Input<number>, healthCheckType?: pulumi.Input<string>, waitForRollPercentage?: pulumi.Input<number>, waitForRollTimeout?: pulumi.Input<number> }>, shouldResumeStateful: pulumi.Input<boolean>, shouldRoll: pulumi.Input<boolean>, waitForRollPercentage?: pulumi.Input<number>, waitForRollTimeout?: pulumi.Input<number> }>;
+    readonly updatePolicy?: pulumi.Input<{ autoApplyTags?: pulumi.Input<boolean>, rollConfig?: pulumi.Input<{ batchSizePercentage: pulumi.Input<number>, gracePeriod?: pulumi.Input<number>, healthCheckType?: pulumi.Input<string>, waitForRollPercentage?: pulumi.Input<number>, waitForRollTimeout?: pulumi.Input<number> }>, shouldResumeStateful: pulumi.Input<boolean>, shouldRoll: pulumi.Input<boolean> }>;
     readonly userData?: pulumi.Input<string>;
     readonly utilizeReservedInstances?: pulumi.Input<boolean>;
     readonly waitForCapacity?: pulumi.Input<number>;
@@ -367,7 +363,6 @@ export interface ElastigroupArgs {
     readonly instanceTypesPreferredSpots?: pulumi.Input<pulumi.Input<string>[]>;
     readonly instanceTypesSpots: pulumi.Input<pulumi.Input<string>[]>;
     readonly instanceTypesWeights?: pulumi.Input<pulumi.Input<{ instanceType: pulumi.Input<string>, weight: pulumi.Input<number> }>[]>;
-    readonly integrationBeanstalk?: pulumi.Input<{ deploymentPreferences?: pulumi.Input<{ automaticRoll?: pulumi.Input<boolean>, batchSizePercentage?: pulumi.Input<number>, gracePeriod?: pulumi.Input<number>, strategy?: pulumi.Input<{ action?: pulumi.Input<string>, shouldDrainInstances?: pulumi.Input<boolean> }> }>, environmentId?: pulumi.Input<string>, managedActions?: pulumi.Input<{ platformUpdate?: pulumi.Input<{ performAt?: pulumi.Input<string>, timeWindow?: pulumi.Input<string>, updateLevel?: pulumi.Input<string> }> }> }>;
     readonly integrationCodedeploy?: pulumi.Input<{ cleanupOnFailure: pulumi.Input<boolean>, deploymentGroups: pulumi.Input<pulumi.Input<{ applicationName: pulumi.Input<string>, deploymentGroupName: pulumi.Input<string> }>[]>, terminateInstanceOnFailure: pulumi.Input<boolean> }>;
     readonly integrationDockerSwarm?: pulumi.Input<{ autoscaleCooldown?: pulumi.Input<number>, autoscaleDown?: pulumi.Input<{ evaluationPeriods?: pulumi.Input<number> }>, autoscaleHeadroom?: pulumi.Input<{ cpuPerUnit?: pulumi.Input<number>, memoryPerUnit?: pulumi.Input<number>, numOfUnits?: pulumi.Input<number> }>, autoscaleIsEnabled?: pulumi.Input<boolean>, masterHost: pulumi.Input<string>, masterPort: pulumi.Input<number> }>;
     readonly integrationEcs?: pulumi.Input<{ autoscaleAttributes?: pulumi.Input<pulumi.Input<{ key: pulumi.Input<string>, value: pulumi.Input<string> }>[]>, autoscaleCooldown?: pulumi.Input<number>, autoscaleDown?: pulumi.Input<{ evaluationPeriods?: pulumi.Input<number> }>, autoscaleHeadroom?: pulumi.Input<{ cpuPerUnit?: pulumi.Input<number>, memoryPerUnit?: pulumi.Input<number>, numOfUnits?: pulumi.Input<number> }>, autoscaleIsAutoConfig?: pulumi.Input<boolean>, autoscaleIsEnabled?: pulumi.Input<boolean>, autoscaleScaleDownNonServiceTasks?: pulumi.Input<boolean>, clusterName: pulumi.Input<string> }>;
@@ -384,7 +379,7 @@ export interface ElastigroupArgs {
     readonly minSize?: pulumi.Input<number>;
     readonly multaiTargetSets?: pulumi.Input<pulumi.Input<{ balancerId: pulumi.Input<string>, targetSetId: pulumi.Input<string> }>[]>;
     readonly name: pulumi.Input<string>;
-    readonly networkInterfaces?: pulumi.Input<pulumi.Input<{ associateIpv6Address?: pulumi.Input<boolean>, associatePublicIpAddress?: pulumi.Input<boolean>, deleteOnTermination?: pulumi.Input<boolean>, description?: pulumi.Input<string>, deviceIndex: pulumi.Input<string>, networkInterfaceId?: pulumi.Input<string>, privateIpAddress?: pulumi.Input<string>, secondaryPrivateIpAddressCount?: pulumi.Input<string> }>[]>;
+    readonly networkInterfaces?: pulumi.Input<pulumi.Input<{ associateIpv6Address?: pulumi.Input<boolean>, associatePublicIpAddress?: pulumi.Input<boolean>, deleteOnTermination?: pulumi.Input<boolean>, description: pulumi.Input<string>, deviceIndex: pulumi.Input<string>, networkInterfaceId?: pulumi.Input<string>, privateIpAddress?: pulumi.Input<string>, secondaryPrivateIpAddressCount?: pulumi.Input<string> }>[]>;
     readonly ondemandCount?: pulumi.Input<number>;
     readonly orientation: pulumi.Input<string>;
     readonly persistBlockDevices?: pulumi.Input<boolean>;
@@ -408,7 +403,7 @@ export interface ElastigroupArgs {
     readonly subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
     readonly tags?: pulumi.Input<pulumi.Input<{ key: pulumi.Input<string>, value: pulumi.Input<string> }>[]>;
     readonly targetGroupArns?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly updatePolicy?: pulumi.Input<{ autoApplyTags?: pulumi.Input<boolean>, rollConfig?: pulumi.Input<{ batchSizePercentage: pulumi.Input<number>, gracePeriod?: pulumi.Input<number>, healthCheckType?: pulumi.Input<string>, waitForRollPercentage?: pulumi.Input<number>, waitForRollTimeout?: pulumi.Input<number> }>, shouldResumeStateful: pulumi.Input<boolean>, shouldRoll: pulumi.Input<boolean>, waitForRollPercentage?: pulumi.Input<number>, waitForRollTimeout?: pulumi.Input<number> }>;
+    readonly updatePolicy?: pulumi.Input<{ autoApplyTags?: pulumi.Input<boolean>, rollConfig?: pulumi.Input<{ batchSizePercentage: pulumi.Input<number>, gracePeriod?: pulumi.Input<number>, healthCheckType?: pulumi.Input<string>, waitForRollPercentage?: pulumi.Input<number>, waitForRollTimeout?: pulumi.Input<number> }>, shouldResumeStateful: pulumi.Input<boolean>, shouldRoll: pulumi.Input<boolean> }>;
     readonly userData?: pulumi.Input<string>;
     readonly utilizeReservedInstances?: pulumi.Input<boolean>;
     readonly waitForCapacity?: pulumi.Input<number>;

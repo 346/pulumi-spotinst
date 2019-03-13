@@ -62,7 +62,6 @@ func NewElastigroup(ctx *pulumi.Context,
 		inputs["instanceTypesPreferredSpots"] = nil
 		inputs["instanceTypesSpots"] = nil
 		inputs["instanceTypesWeights"] = nil
-		inputs["integrationBeanstalk"] = nil
 		inputs["integrationCodedeploy"] = nil
 		inputs["integrationDockerSwarm"] = nil
 		inputs["integrationEcs"] = nil
@@ -132,7 +131,6 @@ func NewElastigroup(ctx *pulumi.Context,
 		inputs["instanceTypesPreferredSpots"] = args.InstanceTypesPreferredSpots
 		inputs["instanceTypesSpots"] = args.InstanceTypesSpots
 		inputs["instanceTypesWeights"] = args.InstanceTypesWeights
-		inputs["integrationBeanstalk"] = args.IntegrationBeanstalk
 		inputs["integrationCodedeploy"] = args.IntegrationCodedeploy
 		inputs["integrationDockerSwarm"] = args.IntegrationDockerSwarm
 		inputs["integrationEcs"] = args.IntegrationEcs
@@ -215,7 +213,6 @@ func GetElastigroup(ctx *pulumi.Context,
 		inputs["instanceTypesPreferredSpots"] = state.InstanceTypesPreferredSpots
 		inputs["instanceTypesSpots"] = state.InstanceTypesSpots
 		inputs["instanceTypesWeights"] = state.InstanceTypesWeights
-		inputs["integrationBeanstalk"] = state.IntegrationBeanstalk
 		inputs["integrationCodedeploy"] = state.IntegrationCodedeploy
 		inputs["integrationDockerSwarm"] = state.IntegrationDockerSwarm
 		inputs["integrationEcs"] = state.IntegrationEcs
@@ -389,10 +386,6 @@ func (r *Elastigroup) InstanceTypesSpots() *pulumi.ArrayOutput {
 // List of weights per instance type for weighted groups. Each object in the list should have the following attributes:
 func (r *Elastigroup) InstanceTypesWeights() *pulumi.ArrayOutput {
 	return (*pulumi.ArrayOutput)(r.s.State["instanceTypesWeights"])
-}
-
-func (r *Elastigroup) IntegrationBeanstalk() *pulumi.Output {
-	return r.s.State["integrationBeanstalk"]
 }
 
 func (r *Elastigroup) IntegrationCodedeploy() *pulumi.Output {
@@ -644,7 +637,6 @@ type ElastigroupState struct {
 	InstanceTypesSpots interface{}
 	// List of weights per instance type for weighted groups. Each object in the list should have the following attributes:
 	InstanceTypesWeights interface{}
-	IntegrationBeanstalk interface{}
 	IntegrationCodedeploy interface{}
 	IntegrationDockerSwarm interface{}
 	IntegrationEcs interface{}
@@ -761,7 +753,6 @@ type ElastigroupArgs struct {
 	InstanceTypesSpots interface{}
 	// List of weights per instance type for weighted groups. Each object in the list should have the following attributes:
 	InstanceTypesWeights interface{}
-	IntegrationBeanstalk interface{}
 	IntegrationCodedeploy interface{}
 	IntegrationDockerSwarm interface{}
 	IntegrationEcs interface{}

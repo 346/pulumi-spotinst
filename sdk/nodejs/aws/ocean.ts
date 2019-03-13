@@ -17,8 +17,7 @@ export class Ocean extends pulumi.CustomResource {
         return new Ocean(name, <any>state, { ...opts, id: id });
     }
 
-    public readonly associatePublicIpAddress: pulumi.Output<boolean | undefined>;
-    public readonly autoscaler: pulumi.Output<{ autoscaleCooldown?: number, autoscaleDown?: { evaluationPeriods?: number }, autoscaleHeadroom?: { cpuPerUnit?: number, gpuPerUnit?: number, memoryPerUnit?: number, numOfUnits?: number }, autoscaleIsAutoConfig?: boolean, autoscaleIsEnabled?: boolean, resourceLimits?: { maxMemoryGib?: number, maxVcpu?: number } } | undefined>;
+    public readonly autoscaler: pulumi.Output<{ autoscaleCooldown?: number, autoscaleDown?: { evaluationPeriods?: number }, autoscaleHeadroom?: { cpuPerUnit?: number, memoryPerUnit?: number, numOfUnits?: number }, autoscaleIsAutoConfig?: boolean, autoscaleIsEnabled?: boolean, resourceLimits?: { maxMemoryGib?: number, maxVcpu?: number } } | undefined>;
     public readonly blacklists: pulumi.Output<string[] | undefined>;
     public readonly controllerId: pulumi.Output<string | undefined>;
     public readonly desiredCapacity: pulumi.Output<number>;
@@ -26,7 +25,6 @@ export class Ocean extends pulumi.CustomResource {
     public readonly iamInstanceProfile: pulumi.Output<string | undefined>;
     public readonly imageId: pulumi.Output<string | undefined>;
     public readonly keyName: pulumi.Output<string | undefined>;
-    public readonly loadBalancers: pulumi.Output<{ arn?: string, name?: string, type?: string }[] | undefined>;
     public readonly maxSize: pulumi.Output<number>;
     public readonly minSize: pulumi.Output<number>;
     public readonly name: pulumi.Output<string | undefined>;
@@ -51,7 +49,6 @@ export class Ocean extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state: OceanState = argsOrState as OceanState | undefined;
-            inputs["associatePublicIpAddress"] = state ? state.associatePublicIpAddress : undefined;
             inputs["autoscaler"] = state ? state.autoscaler : undefined;
             inputs["blacklists"] = state ? state.blacklists : undefined;
             inputs["controllerId"] = state ? state.controllerId : undefined;
@@ -60,7 +57,6 @@ export class Ocean extends pulumi.CustomResource {
             inputs["iamInstanceProfile"] = state ? state.iamInstanceProfile : undefined;
             inputs["imageId"] = state ? state.imageId : undefined;
             inputs["keyName"] = state ? state.keyName : undefined;
-            inputs["loadBalancers"] = state ? state.loadBalancers : undefined;
             inputs["maxSize"] = state ? state.maxSize : undefined;
             inputs["minSize"] = state ? state.minSize : undefined;
             inputs["name"] = state ? state.name : undefined;
@@ -80,7 +76,6 @@ export class Ocean extends pulumi.CustomResource {
             if (!args || args.subnetIds === undefined) {
                 throw new Error("Missing required property 'subnetIds'");
             }
-            inputs["associatePublicIpAddress"] = args ? args.associatePublicIpAddress : undefined;
             inputs["autoscaler"] = args ? args.autoscaler : undefined;
             inputs["blacklists"] = args ? args.blacklists : undefined;
             inputs["controllerId"] = args ? args.controllerId : undefined;
@@ -89,7 +84,6 @@ export class Ocean extends pulumi.CustomResource {
             inputs["iamInstanceProfile"] = args ? args.iamInstanceProfile : undefined;
             inputs["imageId"] = args ? args.imageId : undefined;
             inputs["keyName"] = args ? args.keyName : undefined;
-            inputs["loadBalancers"] = args ? args.loadBalancers : undefined;
             inputs["maxSize"] = args ? args.maxSize : undefined;
             inputs["minSize"] = args ? args.minSize : undefined;
             inputs["name"] = args ? args.name : undefined;
@@ -110,8 +104,7 @@ export class Ocean extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Ocean resources.
  */
 export interface OceanState {
-    readonly associatePublicIpAddress?: pulumi.Input<boolean>;
-    readonly autoscaler?: pulumi.Input<{ autoscaleCooldown?: pulumi.Input<number>, autoscaleDown?: pulumi.Input<{ evaluationPeriods?: pulumi.Input<number> }>, autoscaleHeadroom?: pulumi.Input<{ cpuPerUnit?: pulumi.Input<number>, gpuPerUnit?: pulumi.Input<number>, memoryPerUnit?: pulumi.Input<number>, numOfUnits?: pulumi.Input<number> }>, autoscaleIsAutoConfig?: pulumi.Input<boolean>, autoscaleIsEnabled?: pulumi.Input<boolean>, resourceLimits?: pulumi.Input<{ maxMemoryGib?: pulumi.Input<number>, maxVcpu?: pulumi.Input<number> }> }>;
+    readonly autoscaler?: pulumi.Input<{ autoscaleCooldown?: pulumi.Input<number>, autoscaleDown?: pulumi.Input<{ evaluationPeriods?: pulumi.Input<number> }>, autoscaleHeadroom?: pulumi.Input<{ cpuPerUnit?: pulumi.Input<number>, memoryPerUnit?: pulumi.Input<number>, numOfUnits?: pulumi.Input<number> }>, autoscaleIsAutoConfig?: pulumi.Input<boolean>, autoscaleIsEnabled?: pulumi.Input<boolean>, resourceLimits?: pulumi.Input<{ maxMemoryGib?: pulumi.Input<number>, maxVcpu?: pulumi.Input<number> }> }>;
     readonly blacklists?: pulumi.Input<pulumi.Input<string>[]>;
     readonly controllerId?: pulumi.Input<string>;
     readonly desiredCapacity?: pulumi.Input<number>;
@@ -119,7 +112,6 @@ export interface OceanState {
     readonly iamInstanceProfile?: pulumi.Input<string>;
     readonly imageId?: pulumi.Input<string>;
     readonly keyName?: pulumi.Input<string>;
-    readonly loadBalancers?: pulumi.Input<pulumi.Input<{ arn?: pulumi.Input<string>, name?: pulumi.Input<string>, type?: pulumi.Input<string> }>[]>;
     readonly maxSize?: pulumi.Input<number>;
     readonly minSize?: pulumi.Input<number>;
     readonly name?: pulumi.Input<string>;
@@ -137,8 +129,7 @@ export interface OceanState {
  * The set of arguments for constructing a Ocean resource.
  */
 export interface OceanArgs {
-    readonly associatePublicIpAddress?: pulumi.Input<boolean>;
-    readonly autoscaler?: pulumi.Input<{ autoscaleCooldown?: pulumi.Input<number>, autoscaleDown?: pulumi.Input<{ evaluationPeriods?: pulumi.Input<number> }>, autoscaleHeadroom?: pulumi.Input<{ cpuPerUnit?: pulumi.Input<number>, gpuPerUnit?: pulumi.Input<number>, memoryPerUnit?: pulumi.Input<number>, numOfUnits?: pulumi.Input<number> }>, autoscaleIsAutoConfig?: pulumi.Input<boolean>, autoscaleIsEnabled?: pulumi.Input<boolean>, resourceLimits?: pulumi.Input<{ maxMemoryGib?: pulumi.Input<number>, maxVcpu?: pulumi.Input<number> }> }>;
+    readonly autoscaler?: pulumi.Input<{ autoscaleCooldown?: pulumi.Input<number>, autoscaleDown?: pulumi.Input<{ evaluationPeriods?: pulumi.Input<number> }>, autoscaleHeadroom?: pulumi.Input<{ cpuPerUnit?: pulumi.Input<number>, memoryPerUnit?: pulumi.Input<number>, numOfUnits?: pulumi.Input<number> }>, autoscaleIsAutoConfig?: pulumi.Input<boolean>, autoscaleIsEnabled?: pulumi.Input<boolean>, resourceLimits?: pulumi.Input<{ maxMemoryGib?: pulumi.Input<number>, maxVcpu?: pulumi.Input<number> }> }>;
     readonly blacklists?: pulumi.Input<pulumi.Input<string>[]>;
     readonly controllerId?: pulumi.Input<string>;
     readonly desiredCapacity?: pulumi.Input<number>;
@@ -146,7 +137,6 @@ export interface OceanArgs {
     readonly iamInstanceProfile?: pulumi.Input<string>;
     readonly imageId?: pulumi.Input<string>;
     readonly keyName?: pulumi.Input<string>;
-    readonly loadBalancers?: pulumi.Input<pulumi.Input<{ arn?: pulumi.Input<string>, name?: pulumi.Input<string>, type?: pulumi.Input<string> }>[]>;
     readonly maxSize?: pulumi.Input<number>;
     readonly minSize?: pulumi.Input<number>;
     readonly name?: pulumi.Input<string>;

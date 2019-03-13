@@ -11,5 +11,4 @@ import * as azure from "./azure/index";
 import * as config from "./config/index";
 import * as gcp from "./gcp/index";
 import * as gke from "./gke/index";
-import * as multai from "./multai/index";
-export {aws, azure, config, gcp, gke, multai};
+export {aws, azure, config, gcp, gke};
