@@ -151,7 +151,7 @@ func Provider() tfbridge.ProviderInfo {
 				"@pulumi/pulumi": "latest",
 			},
 			DevDependencies: map[string]string{
-				"@types/node": "^8.0.25", // so we can access strongly typed node definitions.
+				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
 			// See the documentation for tfbridge.OverlayInfo for how to lay out this
@@ -162,7 +162,7 @@ func Provider() tfbridge.ProviderInfo {
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
-				"pulumi": ">=0.16.4,<0.17.0",
+				"pulumi": ">=0.17.1,<0.18.0",
 			},
 		},
 	}
